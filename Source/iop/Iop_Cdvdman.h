@@ -45,9 +45,9 @@ namespace Iop
 		CCdvdman(CIopBios&, uint8*);
 		virtual ~CCdvdman() = default;
 
-		virtual std::string GetId() const override;
-		virtual std::string GetFunctionName(unsigned int) const override;
-		virtual void Invoke(CMIPS&, unsigned int) override;
+		std::string GetId() const override;
+		std::string GetFunctionName(unsigned int) const override;
+		void Invoke(CMIPS&, unsigned int) override;
 
 		void CountTicks(uint32);
 		void SetOpticalMedia(COpticalMedia*);
