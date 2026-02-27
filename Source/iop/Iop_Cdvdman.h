@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include "Iop_Module.h"
 #include "../OpticalMedia.h"
 #include "zip/ZipArchiveWriter.h"
@@ -42,6 +43,8 @@ namespace Iop
 			uint8 date[8];
 		};
 
+		using IlinkId = std::array<uint8, 8>;
+
 		CCdvdman(CIopBios&, uint8*);
 		virtual ~CCdvdman() = default;
 
@@ -51,6 +54,7 @@ namespace Iop
 
 		void CountTicks(uint32);
 		void SetOpticalMedia(COpticalMedia*);
+		void SetIlinkId(const IlinkId&);
 
 		void LoadState(Framework::CZipArchiveReader&) override;
 		void SaveState(Framework::CZipArchiveWriter&) const override;
@@ -109,6 +113,7 @@ namespace Iop
 
 		CIopBios& m_bios;
 		COpticalMedia* m_opticalMedia = nullptr;
+		IlinkId m_ilinkId;
 		uint8* m_ram = nullptr;
 
 		uint32 m_callbackPtr = 0;

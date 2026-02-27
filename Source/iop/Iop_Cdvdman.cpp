@@ -55,6 +55,7 @@ CCdvdman::CCdvdman(CIopBios& bios, uint8* ram)
     : m_bios(bios)
     , m_ram(ram)
 {
+	m_ilinkId.fill(0xAA);
 }
 
 void CCdvdman::LoadState(Framework::CZipArchiveReader& archive)
@@ -438,6 +439,11 @@ void CCdvdman::SetOpticalMedia(COpticalMedia* opticalMedia)
 	m_opticalMedia = opticalMedia;
 }
 
+void CCdvdman::SetIlinkId(const IlinkId& ilinkId)
+{
+	m_ilinkId = ilinkId;
+}
+
 uint32 CCdvdman::CdInit(uint32 mode)
 {
 	CLog::GetInstance().Print(LOG_NAME, FUNCTION_CDINIT "(mode = %d);\r\n", mode);
@@ -575,7 +581,7 @@ uint32 CCdvdman::CdReadILinkId(uint32 idPtr, uint32 statPtr)
 
 	auto idBuffer = m_ram + idPtr;
 	//iLink ID is 64-bits (8 bytes)
-	memset(idBuffer, 0xAA, 8);
+	memcpy(idBuffer, m_ilinkId.data(), 8);
 	if(statPtr != 0)
 	{
 		*reinterpret_cast<uint32*>(m_ram + statPtr) = 0;
