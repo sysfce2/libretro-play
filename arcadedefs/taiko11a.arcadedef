@@ -11,6 +11,7 @@
 		"name": "t11100-4-na-dvd0-a.chd"
 	},
 	"inputMode": "drum",
+	"ilinkId": [50, 31, 199, 250, 214, 238, 240, 28],
 	"eeFrequencyScale": [4, 3],
 	"boot": "ac0:TEBLOAD",
 	"patches":
