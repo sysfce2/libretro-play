@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <optional>
 #include "Types.h"
 #include "ControllerInfo.h"
 
@@ -36,6 +37,7 @@ struct ARCADE_MACHINE_DEF
 		uint32 value = 0;
 	};
 
+	using IlinkId = std::array<uint8, 8>;
 	using ButtonSelector = std::pair<int, PS2::CControllerInfo::BUTTON>;
 
 	std::string id;
@@ -51,6 +53,7 @@ struct ARCADE_MACHINE_DEF
 	INPUT_MODE inputMode = INPUT_MODE::DEFAULT;
 	IO_MODE ioMode = IO_MODE::DEFAULT;
 	std::string boardId;
+	std::optional<IlinkId> ilinkId;
 	std::array<float, 4> screenPosXform = {65535, 0, 65535, 0};
 	uint32 eeFreqScaleNumerator = 1;
 	uint32 eeFreqScaleDenominator = 1;

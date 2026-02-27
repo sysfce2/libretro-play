@@ -184,6 +184,10 @@ ARCADE_MACHINE_DEF ReadArcadeMachineDefinition(const fs::path& arcadeDefPath)
 	{
 		def.buttons = parseButtons(defJson["buttons"]);
 	}
+	if(defJson.contains("ilinkId"))
+	{
+		def.ilinkId = defJson["ilinkId"];
+	}
 	if(defJson.contains("inputMode"))
 	{
 		std::string inputModeString = defJson["inputMode"];
